@@ -1,6 +1,7 @@
 #!/bin/bash
 # Prevents force-pushing to main
 # if getting "syntax error: unexpected end of file" click the bottom right CRLF change to LF
+# set LF as default end of line: Setting -> Text Editor -> File -> EOL -> \n (is LF)
 echo -e "===\n>> Pre-push Hook: Checking branch name..."
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 PROTECTED_BRANCHES="^(main|develop)"
