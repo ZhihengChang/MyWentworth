@@ -1,5 +1,6 @@
 #!/bin/bash
 # Protect master from accidental commits.
+# if getting "syntax error: unexpected end of file" click the bottom right CRLF change to LF
 echo -e "===\n>> Pre-commit Hook:: Checking branch name..."
 branchName=$(git branch | grep '*' | sed 's/* //')
 if [ $branchName == 'main' ]
