@@ -11,10 +11,15 @@ function isEmpty(_obj) {
 }
 
 describe("isEmpty", function() {
+    let test0 = "";
     let test1 = [];
     let test2 = {};
     let test3 = [1,2,3];
     let test4 = {id: 3};
+
+    it("check \"\" is empty", function() {
+        assert.equal(isEmpty(test0), true);
+    });
 
     it("check [] is empty", function() {
       assert.equal(isEmpty(test1), true);
