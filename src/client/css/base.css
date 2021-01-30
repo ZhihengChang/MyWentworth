@@ -1,0 +1,41 @@
+body, div, p, dl, dt, dd, ul, ol, li, 
+h1, h2, h3, h4, h5, h6, th, td,
+form, fieldset, input, textarea {margin: 0; padding: 0;}
+
+table {border-collapse: collapse; border-spacing: 0;}
+fieldset, img {border: 0}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+ol, ul {list-style: none}
+caption, th {text-align: left}
+h1, h2, h3, h4, h5, h6 {font-size: 100%; font-weight: normal}
+q:before, q:after {content: ''}
+abbr, acronym {border: 0}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.f10 {font-size: 10px;}
+.f11 {font-size: 11px;}
+.f12 {font-size: 12px;}
+.f13 {font-size: 13px;}
+.f14 {font-size: 14px;}
+.f15 {font-size: 15px;}
+.f16 {font-size: 16px;}
+.f17 {font-size: 17px;}
+.f18 {font-size: 18px;}
+.f19 {font-size: 19px;}
+.f20 {font-size: 20px;}
+.f23 {font-size: 23px;}
+.f25 {font-size: 25px;}
+.f30 {font-size: 30px;}
+.f50 {font-size: 50px;}

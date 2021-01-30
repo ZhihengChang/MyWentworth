@@ -1,0 +1,21 @@
+{
+    "service": {
+        "port": 3000,
+        "JWT_HEADER": {
+            "alg":"HS256",
+            "typ":"JWT"
+        }
+    },
+
+    "Mongodb": {
+        "api": "edit here",
+        "host": "localhost",
+        "port": 27017,
+        "database": "edit here",
+        "auth": {},
+        "option": { 
+            "useNewUrlParser" : true,
+            "useUnifiedTopology" : true
+        }
+    }
+}

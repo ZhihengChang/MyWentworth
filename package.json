@@ -1,0 +1,23 @@
+{
+  "name": "mywentworth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node src/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZhihengChang/MyWentworth.git"
+  },
+  "author": "Zhiheng Chang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZhihengChang/MyWentworth/issues"
+  },
+  "homepage": "https://github.com/ZhihengChang/MyWentworth#readme",
+  "dependencies": {
+    "mocha": "^8.2.1"
+  }
+}
