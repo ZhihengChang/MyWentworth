@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ZhihengChang/MyWentworth#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mocha": "^8.2.1"
   },
   "devDependencies": {
