@@ -53,15 +53,21 @@ exports.validateAuthToken = function(req, res, next){
 //Controller Functions
 
 exports.handleUserLogin = function(req, res){
+    // res.render("mywit_login");
     util.sendResponse(res, 200, {message: `User Login Successful`});
 }
 
 exports.getUser = function(req, res){
-    console.log(req.params);
+    logger.log('userid: ' + req.params);
     util.sendResponse(res, 200, {message: "User Get"});
 }
 
+exports.deleteUser = function(req, res){
+    logger.log('userid: ' + req.params);
+    util.sendResponse(res, 200, {message: "User Deleted"});
+}
+
 exports.updateUser = function(req, res){
-    console.log(req.body);
+    logger.log('userid: ' + req.params);
     util.sendResponse(res, 200, {message: "User Updated"});
 }
