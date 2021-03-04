@@ -1,9 +1,14 @@
-// const express = require("../../node_modules/express");
 const express = require("express");
-const config = require("../config/config.json");
+const morgan = require("morgan");
+
+//Routes
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-app.listen(config.service.port, ()=>{
-    console.log(`Server is now running on port ${config.service.port}`);
-});
+//Mounting
+app.use(morgan("dev"))
+app.use(express.json());
+app.use("/api/v1/user", userRoutes);
+
+module.exports = app;
