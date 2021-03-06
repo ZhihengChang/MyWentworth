@@ -1,5 +1,5 @@
 /**
- * logger
+ * Logger Class
  * 
  * author: Zhiheng Chang
  * contributor:
@@ -15,7 +15,6 @@ const color_map = {
     note: "\x1b[35m%s",
     msg: "\x1b[36m%s",
 }
-
 class Logger {
     constructor(filename) {
         this._filename = filename;
