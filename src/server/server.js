@@ -18,7 +18,8 @@ mongoose.connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
-}).then(logger.log("Database connected!").info());
+})
+.then(logger.log("Database connected!").info());
 
 const app = require("./app")
 
