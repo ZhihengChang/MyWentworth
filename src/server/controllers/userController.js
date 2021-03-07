@@ -8,9 +8,12 @@
  * date added: 03/03/2021
  */
 
-//require server_utilities for global helper functions access
+//util
+const path = require('path');
 const util = require("../../util/server_utilities");
-const logger = require("../../util/logger");
+const Logger = require("../../util/Logger");
+const logger = new Logger(path.basename(__filename));
+logger.details(true);
 
 //Models
 const Student = require('../models/studentModel');
@@ -21,36 +24,112 @@ const User = require('../models/userModel');
 
 
 //Controller Functions
-exports.getUser = function(req, res){
-    logger.log('userid: ' + req.params);
-    util.sendResponse(res, 200, {message: "User Get"});
+/**
+ * Get specific user by object id
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.getUser = async function (req, res) {
+    logger.log("get user " + req.params.id).msg();
+    try {
+        const user = await User.findById(req.params.id);
+        util.sendResponse(res, 200, {
+            status: 'success',
+            data: { user }
+        });
+    }catch(err){
+        util.sendResponse(res, 404, {
+            status: 'fail',
+            message: err
+        });
+    }
 }
 
-exports.getAllUser = function(req, res){
-
+/**
+ * Get all users in user collections
+ * pagenation { $lte/gte/gt/lt: Number } should be considered
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.getAllUser = async function (req, res) {
+    logger.log("get all users").msg();
+    //req should contain pagenation 
+    try {
+        const users = await User.find();
+        util.sendResponse(res, 200, {
+            status: 'success',
+            data: { users }
+        });
+    }catch(err){
+        util.sendResponse(res, 404, {
+            status: 'fail',
+            message: err
+        });
+    }
 }
 
-exports.createUser = async function(req, res){
-    try{
+/**
+ * Create a user based on request body
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.createUser = async function (req, res) {
+    logger.log("create user " + req.body.wit_id).msg();
+    try {
         const newUser = await User.create(req.body);
         util.sendResponse(res, 200, {
             status: 'success',
             data: { user: newUser }
         });
-    }catch(err){
-        util.sendResponse(res, 400, {
+    } catch (err) {
+        util.sendResponse(res, 404, {
             status: 'fail',
             message: err
         });
-    }   
+    }
 }
 
-exports.deleteUser = function(req, res){
-    logger.log('userid: ' + req.params);
-    util.sendResponse(res, 200, {message: "User Deleted"});
+/**
+ * Delete a specific user by object id
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.deleteUser = async function (req, res) {
+    logger.log("delete user " + req.params.id).msg();
+    try {
+        const result = await User.findByIdAndDelete(req.params.id);
+        util.sendResponse(res, 200, {
+            status: 'success',
+            data: { result }
+        });
+    } catch (err) {
+        util.sendResponse(res, 404, {
+            status: 'fail',
+            message: err
+        });
+    }
 }
 
-exports.updateUser = function(req, res){
-    logger.log('userid: ' + req.params);
-    util.sendResponse(res, 200, {message: "User Updated"});
+/**
+ * Update a user based on request body
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.updateUser = async function (req, res) {
+    logger.log("update user " + req.params.id).msg();
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,              //return updated document
+            runValidators: true,    //validate model  
+        })
+        util.sendResponse(res, 204, {
+            status: 'success',
+            data: null,
+        });
+    } catch (err) {
+        util.sendResponse(res, 404, {
+            status: 'fail',
+            message: err
+        });
+    }
 }
