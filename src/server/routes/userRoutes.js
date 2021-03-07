@@ -7,7 +7,11 @@ const router = express.Router();
 // router.param("id", userController.validateUserId);
 
 //Routes
-router.route("/:id")
+router.route('/')
+    .get(userController.getAllUser)
+    .post(userController.createUser);
+
+router.route('/:id')
     .get(userController.getUser)
     .patch(userController.updateUser)
     .delete(userController.deleteUser);

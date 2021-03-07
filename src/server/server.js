@@ -17,8 +17,10 @@ const DB = process.env.DATABASE.replace(
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useUnifiedTopology: true,
     useFindAndModify: false
-}).then(logger.log("Database connected!").info());
+})
+.then(logger.log("Database connected!").info());
 
 const app = require("./app")
 
@@ -27,3 +29,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     logger.log(`Server is now running on port ${port}`).info();
 });
+
