@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
+    userid:{
+        type: Number,
+        required: [true, 'A user must have a user ID'],
+        default: 1000,
+        unique: true
+    },
+    
     wit_id: {
         type: String,
         required: [true, 'A user must have a WIT ID'],
@@ -9,6 +16,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'A user must have a username'],
+        trim: true,
         unique: true
     },
 
@@ -17,14 +25,15 @@ const userSchema = new mongoose.Schema({
         //required: [true, 'A user must have a password']
     },
 
+    avatar:         { type: String, },
     status:         { type: String, default: "offline" },
-    notifications:  { type: Array, default: [] },
-    friends:        { type: Array, default: [] },
-    posts:          { type: Array, default: [] },
-    chats:          { type: Array, default: [] },
-    login_ts:       { type: Number, default: 0 },
-    logout_ts:      { type: Number, default: 0 },
-    signup_ts:      { type: Number, default: new Date().getTime() },
+    notifications:  { type: Array, default: [Number] },
+    friends:        { type: Array, default: [Number] },
+    posts:          { type: Array, default: [Number] },
+    chats:          { type: Array, default: [Number] },
+    login_ts:       { type: Date, default: new Date(0) },
+    logout_ts:      { type: Date, default: new Date(0) },
+    signup_ts:      { type: Date, default: Date.now() },
 });
 
 const User = mongoose.model('User', userSchema);
