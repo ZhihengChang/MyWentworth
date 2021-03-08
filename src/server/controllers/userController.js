@@ -15,19 +15,25 @@ const Logger = require("../../util/Logger");
 const logger = new Logger(path.basename(__filename));
 logger.details(true);
 
+const DBAPI = require("../../util/DBAPI");
+
 //Models
 const Student = require('../models/studentModel');
 const User = require('../models/userModel');
 
 
 //Middlewares
+// exports.aliasOnlineUsers = (req, res, next) => {
+//     req.query.status = 'online';
+//     next();
+// }
 
 
 //Controller Functions
 /**
  * Get specific user by object id
- * @param {*} req 
- * @param {*} res 
+ * @param {Request} req 
+ * @param {Response} res 
  */
 exports.getUser = async function (req, res) {
     logger.log("get user " + req.params.id).msg();
@@ -47,17 +53,24 @@ exports.getUser = async function (req, res) {
 
 /**
  * Get all users in user collections
- * pagenation { $lte/gte/gt/lt: Number } should be considered
- * @param {*} req 
- * @param {*} res 
+ * @param {Request} req 
+ * @param {Response} res 
  */
 exports.getAllUser = async function (req, res) {
     logger.log("get all users").msg();
     //req should contain pagenation 
     try {
-        const users = await User.find();
+        //modify query with DBAPI
+        const result = new DBAPI(User.find(), req.query)
+            .filter()
+            .sort()
+            .limitFields()
+            .paginate();
+
+        const users = await result.query;
         util.sendResponse(res, 200, {
             status: 'success',
+            result: result.length,
             data: { users }
         });
     }catch(err){
@@ -70,8 +83,8 @@ exports.getAllUser = async function (req, res) {
 
 /**
  * Create a user based on request body
- * @param {*} req 
- * @param {*} res 
+ * @param {Request} req 
+ * @param {Response} res 
  */
 exports.createUser = async function (req, res) {
     logger.log("create user " + req.body.wit_id).msg();
@@ -91,8 +104,8 @@ exports.createUser = async function (req, res) {
 
 /**
  * Delete a specific user by object id
- * @param {*} req 
- * @param {*} res 
+ * @param {Request} req 
+ * @param {Response} res 
  */
 exports.deleteUser = async function (req, res) {
     logger.log("delete user " + req.params.id).msg();
@@ -112,8 +125,8 @@ exports.deleteUser = async function (req, res) {
 
 /**
  * Update a user based on request body
- * @param {*} req 
- * @param {*} res 
+ * @param {Request} req 
+ * @param {Response} res 
  */
 exports.updateUser = async function (req, res) {
     logger.log("update user " + req.params.id).msg();

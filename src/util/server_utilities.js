@@ -7,9 +7,13 @@
  * descriptions: simplify server operations and to client communications
  * date added: 03/03/2021
  */
+module.exports = {
+    //server
+    sendResponse,
+}
 
 const logger = require("./logger");
 
-exports.sendResponse = function(res, statusCode, data){
+function sendResponse(res, statusCode, data){
     res.status(statusCode).json(data);
 }
