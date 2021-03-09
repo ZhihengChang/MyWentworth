@@ -7,6 +7,9 @@ const router = express.Router();
 // router.param("id", userController.validateUserId);
 
 //Routes
+// router.route('/online')
+//     .get(userController.aliasOnlineUsers, userController.getAllUser);
+
 router.route('/')
     .get(userController.getAllUser)
     .post(userController.createUser);

@@ -1,0 +1,59 @@
+[
+    {
+        "author": "changz",
+        "content": "my first post",
+        "post_ts": "2021-03-09T01:01:44.568Z"
+    },
+    {
+        "author": "toms",
+        "content": "hello everyone",
+        "post_ts": "2021-03-09T04:22:23.568Z"
+    },
+    {
+        "author": "toms",
+        "content": "after school",
+        "post_ts": "2021-03-08T14:08:30.568Z"
+    },
+    {
+        "author": "yushuf",
+        "content": "good afternoon",
+        "post_ts": "2021-03-08T16:10:55.568Z"
+    },
+    {
+        "author": "yushuf",
+        "content": "doing homework",
+        "post_ts": "2021-03-08T20:58:14.568Z"
+    },
+    {
+        "author": "yushuf",
+        "content": "go away",
+        "post_ts": "2021-03-08T21:05:44.568Z",
+        "public": false
+    },
+    {
+        "author": "maxm",
+        "content": "can't sleep",
+        "post_ts": "2021-03-07T02:02:12.568Z",
+        "public": false
+    },
+    {
+        "author": "bella",
+        "content": "wake up too early",
+        "post_ts": "2021-03-07T05:30:56.568Z"
+    },
+    {
+        "author": "bella",
+        "content": "nothing to do",
+        "post_ts": "2021-03-07T05:42:21.568Z"
+    },
+    {
+        "author": "bella",
+        "content": "I'm tired",
+        "post_ts": "2021-03-07T00:07:10.568Z"
+    },
+    {
+        "author": "bella",
+        "content": "going to class",
+        "post_ts": "2021-03-07T00:13:38.568Z"
+    }
+]

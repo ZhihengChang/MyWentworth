@@ -13,6 +13,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const Logger = require('../../src/util/logger');
 const User = require('../../src/server/models/userModel');
+const Post = require('../../src/server/models/postModel');
 
 const logger = new Logger(path.basename(__filename));
 dotenv.config({ path:  __dirname + '/../../src/config/config.env'});
@@ -36,11 +37,15 @@ mongoose.connect(DB, {
 const users = JSON.parse(
     fs.readFileSync(`${__dirname}/users-data.json`, 'utf-8')
 );
+const posts = JSON.parse(
+    fs.readFileSync(`${__dirname}/posts-data.json`, 'utf-8')
+);
 
 //Insert all data to DB
 const importData = async function(){
     try{
         await User.create(users);
+        await Post.create(posts);
         logger.log('Data successfully loaded').info();
     }catch(err){
         logger.log(err).err();
@@ -52,6 +57,7 @@ const importData = async function(){
 const deleteData = async function(){
     try{
         await User.deleteMany();
+        await Post.deleteMany();
         logger.log('Data successfully deleted').info();
         process.exit();
     }catch(err){
