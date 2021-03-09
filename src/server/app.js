@@ -4,6 +4,7 @@ const path = require("path");
 
 //Routes
 const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.set('view engine', 'ejs');
 app.use(morgan("dev"))
 app.use(express.json());
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/posts", postRoutes);
 
 module.exports = app;
