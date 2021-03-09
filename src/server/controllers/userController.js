@@ -57,8 +57,7 @@ exports.getUser = async function (req, res) {
  * @param {Response} res 
  */
 exports.getAllUser = async function (req, res) {
-    logger.log("get all users").msg();
-    //req should contain pagenation 
+    logger.log("get all users").msg(); 
     try {
         //modify query with DBAPI
         const result = new DBAPI(User.find(), req.query)
