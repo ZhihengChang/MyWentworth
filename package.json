@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/ZhihengChang/MyWentworth#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
     "mocha": "^8.2.1",
     "mongoose": "^5.11.15",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "husky": "^4.3.8"
