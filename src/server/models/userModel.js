@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+
 const userSchema = new mongoose.Schema({
     wit_id: {
         type: String,
@@ -17,7 +20,20 @@ const userSchema = new mongoose.Schema({
 
     password: {
         type: String,
-        //required: [true, 'A user must have a password']
+        required: [true, 'A user must have a password'],
+        minlength: 8
+    },
+
+    passwordConfirm: {
+        type: String,
+        require: [true, 'Please confirm password'],
+        validate: {
+            //only works on create and save
+            validator: function(el){
+                return el === this.password;
+            },
+            message: 'Password Mismatch!'
+        }
     },
 
     avatar:         { type: String, },
@@ -31,9 +47,12 @@ const userSchema = new mongoose.Schema({
     signup_ts:      { type: Date, default: Date.now() },
 });
 
-// userSchema.pre('save', function(){
-//     console.log(this);
-// })
+userSchema.pre('save', async function(next){
+    if(!this.isModified('password')) return next();
+    this.password = await bcrypt.hash(this.password, 12);
+    this.passwordConfirm = undefined;
+    next();
+})
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

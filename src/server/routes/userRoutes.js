@@ -1,14 +1,10 @@
 const express = require("express");
 const userController = require("../controllers/userController");
+const authController = require("../controllers/authController");
 
 const router = express.Router();
 
-// router.use(userController.validateAuthToken);
-// router.param("id", userController.validateUserId);
-
-//Routes
-// router.route('/online')
-//     .get(userController.aliasOnlineUsers, userController.getAllUser);
+router.post('/signup', authController.signup);
 
 router.route('/')
     .get(userController.getAllUser)

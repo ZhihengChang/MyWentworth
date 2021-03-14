@@ -35,48 +35,35 @@ const Post = require('../models/postModel');
  * @param {Request} req 
  * @param {Response} res 
  */
-exports.getAllPosts = async function (req, res) {
-    logger.log("get all posts").msg(); 
-    try {
-        //modify query with DBAPI
-        const result = new DBAPI(Post.find(), req.query)
-            .filter()
-            .sort()
-            .limitFields()
-            .paginate();
+exports.getAllPosts = catchAsync(async function (req, res, next) {
+    logger.log("get all posts").msg();
+    //modify query with DBAPI
+    const result = new DBAPI(Post.find(), req.query)
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
 
-        const posts = await result.query;
-        util.sendResponse(res, 200, {
-            status: 'success',
-            result: result.length,
-            data: { posts }
-        });
-    }catch(err){
-        util.sendResponse(res, 404, {
-            status: 'fail',
-            message: err
-        });
-    }
-}
+    const posts = await result.query;
+    util.sendResponse(res, 200, {
+        status: 'success',
+        result: result.length,
+        data: { posts }
+    });
+});
 
 /**
  * Create a post based on request body
  * @param {Request} req 
  * @param {Response} res 
  */
-exports.createPost = async function (req, res) {
+exports.createPost = catchAsync(async function (req, res, next) {
     logger.log("create post author " + req.body.author).msg();
-    try {
-        const newPost = await Post.create(req.body);
-        util.sendResponse(res, 200, {
-            status: 'success',
-            data: { post: newPost }
-        });
-    } catch (err) {
-        util.sendResponse(res, 404, {
-            status: 'fail',
-            message: err
-        });
-    }
-}
+    
+    const newPost = await Post.create(req.body);
+    util.sendResponse(res, 200, {
+        status: 'success',
+        data: { post: newPost }
+    });
+});
 

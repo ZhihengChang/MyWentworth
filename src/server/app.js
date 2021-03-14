@@ -1,6 +1,13 @@
+//utils
+const AppError = require('../util/error/appError');
+const Logger = require('../util/logger');
+const globalErrorHandler = require('./controllers/errorController');
+
+//app
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
+const logger = new Logger();
 
 //Routes
 const userRoutes = require("./routes/userRoutes");
@@ -19,7 +26,14 @@ app.set('view engine', 'ejs');
 //Mounting
 app.use(morgan("dev"))
 app.use(express.json());
-app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/posts", postRoutes);
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
+
+//Error handling
+app.all('*', (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on the server`, 404));
+});
+
+app.use(globalErrorHandler);
 
 module.exports = app;

@@ -1,11 +1,8 @@
 /**
  * server_utilites
  * 
- * author: Zhiheng Chang
- * contributor:
  * used by: * server side file
  * descriptions: simplify server operations and to client communications
- * date added: 03/03/2021
  */
 module.exports = {
     //server
@@ -14,6 +11,12 @@ module.exports = {
 
 const logger = require("./logger");
 
+/**
+ * Send json response with status code
+ * @param {Response} res 
+ * @param {Number} statusCode 
+ * @param {Object} data 
+ */
 function sendResponse(res, statusCode, data){
     res.status(statusCode).json(data);
 }

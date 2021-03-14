@@ -3,44 +3,51 @@
 
         "wit_id": "W00374917",
         "username": "changz",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     },
     {
 
         "wit_id": "W00345211",
         "username": "millsh",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     },
     {
 
         "status": "online",
         "wit_id": "W00875145",
         "username": "toms",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     },
     {
 
         "wit_id": "W00568334",
         "username": "bella",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     },
     {
 
         "wit_id": "W00469983",
         "username": "yushuf",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     },
     {
   
         "status": "online",
         "wit_id": "W00497623",
         "username": "johns",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     },
     {
 
         "wit_id": "W00734910",
         "username": "maxm",
-        "password": ""
+        "password": "12345678",
+        "passwordConfirm":"12345678"
     }
 ]
