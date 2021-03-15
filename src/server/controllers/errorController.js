@@ -10,13 +10,25 @@ const Logger = require('../../util/logger');
 const AppError = require('../../util/error/appError');
 const logger = new Logger();
 
+const handleJWTError = () => {
+    new AppError('Invalid Authorization Token. Please Log in Again', 401);
+}
+
+const handleJWTExpiredError = () => {
+    new AppError('Authorization Token Expired. Please Log in Again', 401);
+};
+
 module.exports = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500; //internal server error
     err.status = err.status || 'error'
     if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res);
-    } else if (process.env.NODE_ENV === 'production') {
-        sendErrorProd(err, res);
+    } else if (process.env.NODE_ENV.trim() === 'production') {
+        let error = { ...err };
+        if (error.name === 'JsonWebTokenError') error = handleJWTError();
+        if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
+
+        sendErrorProd(error, res);
     }
 }
 

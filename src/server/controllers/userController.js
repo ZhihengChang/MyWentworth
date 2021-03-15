@@ -23,10 +23,9 @@ logger.details(true);
 
 
 //Controller Functions
+
 /**
  * Get specific user by object id
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.getUser = catchAsync(async function (req, res, next) {
     let id = req.params.id;
@@ -45,8 +44,6 @@ exports.getUser = catchAsync(async function (req, res, next) {
 
 /**
  * Get all users in user collections
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.getAllUser = catchAsync(async function (req, res, next) {
     logger.log("get all users").msg();
@@ -68,8 +65,6 @@ exports.getAllUser = catchAsync(async function (req, res, next) {
 
 /**
  * Create a user based on request body
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.createUser = catchAsync(async function (req, res, next) {
     logger.log("create user").msg();
@@ -83,8 +78,6 @@ exports.createUser = catchAsync(async function (req, res, next) {
 
 /**
  * Delete a specific user by object id
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.deleteUser = catchAsync(async function (req, res, next) {
     logger.log("delete user " + req.params.id).msg();
@@ -101,8 +94,6 @@ exports.deleteUser = catchAsync(async function (req, res, next) {
 
 /**
  * Update a user based on request body
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.updateUser = catchAsync(async function (req, res, next) {
     let id = req.params.id
