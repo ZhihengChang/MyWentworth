@@ -4,6 +4,8 @@ const Logger = require('../util/logger');
 const globalErrorHandler = require('./controllers/errorController');
 
 //app
+const expressLayouts = require("express-ejs-layouts");
+const flash = require("connect-flash");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
@@ -18,10 +20,20 @@ const app = express();
 //Get views path
 const parentDir = path.join(__dirname, '../');
 const viewDir = path.join(parentDir, 'client/views');
+
 //Set views path
 app.set('views', viewDir);
+
 //Set EJS
+app.use(expressLayouts);
 app.set('view engine', 'ejs'); 
+
+//Serve static files
+const clientDir = path.join(parentDir, 'client');
+app.use(express.static(clientDir))
+
+// Built-in bodyParser middleware
+app.use(express.urlencoded({ extended: false }));
 
 //Mounting
 app.use(morgan("dev"))
