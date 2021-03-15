@@ -1,11 +1,8 @@
 /**
  * Post Controller
  * 
- * author: Zhiheng Chang
- * contributor:
  * used by: postRoutes.js
  * descriptions: provides post management functions
- * date added: 03/08/2021
  */
 
 //util
@@ -32,8 +29,6 @@ const Post = require('../models/postModel');
 
 /**
  * Get all posts in posts collections
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.getAllPosts = catchAsync(async function (req, res, next) {
     logger.log("get all posts").msg();
@@ -54,8 +49,6 @@ exports.getAllPosts = catchAsync(async function (req, res, next) {
 
 /**
  * Create a post based on request body
- * @param {Request} req 
- * @param {Response} res 
  */
 exports.createPost = catchAsync(async function (req, res, next) {
     logger.log("create post author " + req.body.author).msg();
