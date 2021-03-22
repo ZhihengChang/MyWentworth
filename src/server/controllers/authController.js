@@ -11,6 +11,7 @@ const AppError = require("../../util/error/appError");
 const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
 const catchAsync = require('../../util/error/catchAsync');
+const sendEmail = require('../../util/email');
 const { decode } = require('punycode');
 
 /**
@@ -29,12 +30,16 @@ const signToken = function(id){
  */
 exports.signup = catchAsync(async function(req, res, next){
     const newUser = await User.create({
-        wit_id: req.body.wit_id,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
+
+        wit_id:             req.body.wit_id,
+        username:           req.body.username,
+        email:              req.body.email,
+        password:           req.body.password,
+        passwordConfirm:    req.body.passwordConfirm,
+        role:               req.body.role,
+
     });
+    
     const token = signToken(newUser._id);
 
     util.sendResponse(res, 201, {
@@ -117,4 +122,77 @@ exports.protect = catchAsync(async function(req, res, next){
     req.user = user;
 
     next();
-})
+});
+
+exports.restrictTo = (...roles) => {
+    return (req, res, next) => {
+        if(!roles.includes(req.user.role)){
+            return next(
+                new AppError(
+                    'You do not have permission to perform this action.', 
+                    403
+                )
+            );
+        }
+        next();
+    };
+}
+
+exports.forgotPassword = catchAsync(async function(req, res, next) {
+    //get user based on post email
+    let email = req.body.email;
+    const user = await User.findOne({ email });
+
+    if(!user){
+        return next(
+            new AppError(
+                'There is no user with email address.',
+                404
+            )
+        );
+    }
+
+    //generate the random reset token
+    const resetToken = user.createPasswordResetToken();
+    await user.save({ 
+        validateBeforeSave: false 
+    });
+
+    //send token to user's email
+    const resetURL = `${req.protocol}://${req.get('host')}/users/resetPassword/${resetToken}`;
+    const message = `Forgot your password? Submit your new password and confirm password at: ${resetURL}.`;
+
+    try{
+        await sendEmail({
+            email,
+            subject: 'Your Password Reset Token (Expires in 10 mins)',
+            message,
+        });
+    
+        util.sendResponse(res, 200, {
+            status: 'sucess',
+            message: 'Token sent to email!',
+        });
+
+    }catch(err){
+        console.log(err);
+        user.passwordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+
+        await user.save({ 
+            validateBeforeSave: false 
+        });
+
+        return next(
+            new AppError(
+                'There was an error sending the email, please try again later.',
+                500
+            )
+        );
+    }
+    
+});
+
+exports.resetPassword = function(req, res, next) {
+
+}

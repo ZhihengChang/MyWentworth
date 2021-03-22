@@ -88,7 +88,7 @@ exports.deleteUser = catchAsync(async function (req, res, next) {
     }
     util.sendResponse(res, 200, {
         status: 'success',
-        data: { result }
+        data: { user }
     });
 });
 
