@@ -56,5 +56,14 @@
         "email": "maxm@wit.edu",
         "password": "12345678",
         "passwordConfirm":"12345678"
+    },
+    {
+
+        "wit_id": "W00000000",
+        "username": "admin",
+        "email": "admin@wit.edu",
+        "password": "12345678",
+        "passwordConfirm":"12345678",
+        "role": "admin"
     }
 ]
