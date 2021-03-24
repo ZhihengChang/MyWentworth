@@ -27,7 +27,7 @@ logger.details(true);
 /**
  * Get specific user by object id
  */
-exports.getUser = catchAsync(async function (req, res, next) {
+exports.getUser = catchAsync( async function (req, res, next) {
     let id = req.params.id;
     logger.log("get user " + req.params.id).msg();
 
@@ -45,7 +45,7 @@ exports.getUser = catchAsync(async function (req, res, next) {
 /**
  * Get all users in user collections
  */
-exports.getAllUser = catchAsync(async function (req, res, next) {
+exports.getAllUser = catchAsync( async function (req, res, next) {
     logger.log("get all users").msg();
 
     //modify query with DBAPI
@@ -66,7 +66,7 @@ exports.getAllUser = catchAsync(async function (req, res, next) {
 /**
  * Create a user based on request body
  */
-exports.createUser = catchAsync(async function (req, res, next) {
+exports.createUser = catchAsync( async function (req, res, next) {
     logger.log("create user").msg();
 
     const newUser = await User.create(req.body);
@@ -79,7 +79,7 @@ exports.createUser = catchAsync(async function (req, res, next) {
 /**
  * Delete a specific user by object id
  */
-exports.deleteUser = catchAsync(async function (req, res, next) {
+exports.deleteUser = catchAsync( async function (req, res, next) {
     logger.log("delete user " + req.params.id).msg();
 
     const user = await User.findByIdAndDelete(req.params.id);
@@ -95,7 +95,7 @@ exports.deleteUser = catchAsync(async function (req, res, next) {
 /**
  * Update a user based on request body
  */
-exports.updateUser = catchAsync(async function (req, res, next) {
+exports.updateUser = catchAsync( async function (req, res, next) {
     let id = req.params.id
     logger.log("update user " + id).msg();
 
@@ -111,3 +111,29 @@ exports.updateUser = catchAsync(async function (req, res, next) {
         data: null,
     });
 });
+
+/**
+ * Update current user profile
+ */
+exports.updateProfile = catchAsync( async function (req, res, next) {
+    // User can not update password
+    if(req.body.password || req.body.passwordConfirm){
+        return next(
+            new AppError(
+                'User password can NOT be update here',
+                400
+            )
+        );
+    }
+
+    // Update user
+    const filteredBody = util.filterObject(req.body, 'username', 'email');
+    const user = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+        new: true,
+        runValidators: true,
+    });
+
+    util.sendResponse(res, 200, {
+        status: "success",
+    });
+})
