@@ -79,6 +79,18 @@ userSchema.pre('save', async function(next){
 });
 
 /**
+ * Pre save hook:
+ * Update passwordChange_ts when update the password
+ */
+userSchema.pre('save', async function(next){
+    if(!this.isModified('password') || this.isNew) return next();
+    
+    // Sometimes JWT is issued before the passwordChange_ts is updated
+    this.passwordChange_ts = Date.now() - 1000; 
+    next();
+});
+
+/**
  * Validate both password match
  * @param {String} candidatePassword: input password
  * @param {String} userPassword: user password in db
