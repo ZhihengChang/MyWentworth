@@ -6,6 +6,7 @@
  */
 
 const { promisify } = require('util');
+const crypto = require('crypto');
 const util = require('../../util/server_utilities');
 const AppError = require("../../util/error/appError");
 const jwt = require('jsonwebtoken');
@@ -13,6 +14,7 @@ const User = require('./../models/userModel');
 const catchAsync = require('../../util/error/catchAsync');
 const sendEmail = require('../../util/email');
 const { decode } = require('punycode');
+const { findOne } = require('./../models/userModel');
 
 /**
  * Create a JWT token based on the given user id
@@ -24,6 +26,22 @@ const signToken = function(id){
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
 }
+
+/**
+ * Create JWT token and send the token in response
+ * @param {Response} res 
+ * @param {Number} statusCode 
+ * @param {Object} user 
+ */
+const createTokenAndSend = function(res, statusCode, user){
+    const token = signToken(user._id);
+
+    util.sendResponse(res, statusCode, {
+        status: "success",
+        token,
+        data: { user }
+    });
+} 
 
 /**
  * User signup, return the new user object with JWT token
@@ -40,13 +58,7 @@ exports.signup = catchAsync(async function(req, res, next){
 
     });
     
-    const token = signToken(newUser._id);
-
-    util.sendResponse(res, 201, {
-        status: 'success',
-        token,
-        data: { user: newUser }
-    });
+    createTokenAndSend(res, 201, newUser);
 });
 
 /**
@@ -67,11 +79,7 @@ exports.login = catchAsync(async function(req, res, next){
     }
 
     // send token
-    const token = signToken(user._id);
-    util.sendResponse(res, 200, {
-        status: 'success',
-        token,
-    });
+    createTokenAndSend(res, 200, user);
 });
 
 /**
@@ -124,6 +132,11 @@ exports.protect = catchAsync(async function(req, res, next){
     next();
 });
 
+/**
+ * Restrict other roles' access except given role to a route 
+ * @param  {...String} roles 
+ * @returns next function
+ */
 exports.restrictTo = (...roles) => {
     return (req, res, next) => {
         if(!roles.includes(req.user.role)){
@@ -138,6 +151,35 @@ exports.restrictTo = (...roles) => {
     };
 }
 
+/**
+ * Update current user password
+ */
+exports.updatePassword = catchAsync( async function(req, res, next){
+    // Get user
+    const user = await User.findById(req.user.id).select('+password');
+
+    // Check given password is correct
+    if(!(await user.correctPassword(req.body.passwordCurrent, user.password))){
+        return next(
+            new AppError(
+                'Your current password is incorrect',
+                401
+            )
+        );
+    }
+
+    // Update password
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    await user.save(); //middleware and validators only works when save()
+
+    // Log user in send JWT
+    createTokenAndSend(res, 200, user);
+});
+
+/**
+ * Send a forgot password email to the given user email it the email exist
+ */
 exports.forgotPassword = catchAsync(async function(req, res, next) {
     //get user based on post email
     let email = req.body.email;
@@ -193,6 +235,37 @@ exports.forgotPassword = catchAsync(async function(req, res, next) {
     
 });
 
-exports.resetPassword = function(req, res, next) {
+/**
+ * Reset the user password and update JWT
+ */
+exports.resetPassword = catchAsync( async function(req, res, next) {
+    // Get user based on the token
+    const hashedToken = crypto
+        .createHash('sha256')
+        .update(req.params.token)
+        .digest('hex');
 
-}
+    const user = await User.findOne({ 
+        passwordResetToken: hashedToken, 
+        passwordResetExpires: { $gt: Date.now() }
+    });
+
+    if(!user){
+        return next(
+            new AppError(
+                'Token is invalid or has expired',
+                400
+            )
+        );
+    }
+
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    // Log the user in send JWT
+    createTokenAndSend(res, 200, user);
+});
