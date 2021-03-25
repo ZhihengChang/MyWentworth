@@ -126,8 +126,10 @@ exports.updateProfile = catchAsync( async function (req, res, next) {
         );
     }
 
-    // Update user
+    // Filter body
     const filteredBody = util.filterObject(req.body, 'username', 'email');
+
+    // Update user
     const user = await User.findByIdAndUpdate(req.user.id, filteredBody, {
         new: true,
         runValidators: true,
