@@ -39,17 +39,18 @@ app.use('/api', limiter);
 
 // Get views path
 const parentDir = path.join(__dirname, '../');
-const viewDir = path.join(parentDir, 'client/views');
+const clientDir = path.join(parentDir, 'client');
+// const viewDir = path.join(parentDir, 'client/views');
+const viewDir = path.join(__dirname, '../client/views');
+
+// Set EJS
+// app.use(expressLayouts);
+app.set('view engine', 'pug'); 
 
 // Set views path
 app.set('views', viewDir);
 
-// Set EJS
-app.use(expressLayouts);
-app.set('view engine', 'ejs'); 
-
 // Serve static files
-const clientDir = path.join(parentDir, 'client');
 app.use(express.static(clientDir))
 
 // Built-in bodyParser middleware
@@ -70,6 +71,10 @@ app.use(
 );
 
 // Mounting
+app.get('/', (req, res) => {
+    res.status(200).render('base');
+});
+
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
