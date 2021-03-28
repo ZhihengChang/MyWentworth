@@ -74,6 +74,7 @@ app.use(
 // Mounting
 app.get('/', (req, res) => {
     res.status(200).render('base');
+});
 
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
