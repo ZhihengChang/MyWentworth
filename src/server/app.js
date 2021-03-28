@@ -45,6 +45,7 @@ const viewDir = path.join(__dirname, '../client/views');
 
 // Set EJS
 // app.use(expressLayouts);
+
 app.set('view engine', 'pug'); 
 
 // Set views path
