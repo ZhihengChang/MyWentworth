@@ -45,6 +45,7 @@ const viewDir = path.join(__dirname, '../client/views');
 
 // Set EJS
 // app.use(expressLayouts);
+
 app.set('view engine', 'pug'); 
 
 // Set views path
@@ -73,7 +74,6 @@ app.use(
 // Mounting
 app.get('/', (req, res) => {
     res.status(200).render('base');
-});
 
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
