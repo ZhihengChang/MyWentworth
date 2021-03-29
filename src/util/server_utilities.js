@@ -7,6 +7,7 @@
 module.exports = {
     sendResponse,
     filterObject,
+    renderPage,
 }
 
 /**
@@ -34,4 +35,15 @@ function filterObject(obj, ...allowedFields) {
     });
 
     return filteredObject;
+}
+
+/**
+ * Render page with given template name and data
+ * @param {Response} res 
+ * @param {Number} statusCode 
+ * @param {String} page 
+ * @param {Object} data 
+ */
+function renderPage(res, statusCode, page, data){
+    res.status(statusCode).render(page, data);
 }

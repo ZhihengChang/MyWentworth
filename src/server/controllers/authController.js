@@ -13,8 +13,6 @@ const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
 const catchAsync = require('../../util/error/catchAsync');
 const sendEmail = require('../../util/email');
-const { decode } = require('punycode');
-const { findOne } = require('./../models/userModel');
 
 /**
  * Create a JWT token based on the given user id

@@ -9,16 +9,15 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require("xss-clean");
 const hpp = require("hpp");
-const expressLayouts = require("express-ejs-layouts");
-const flash = require("connect-flash");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const logger = new Logger();
 
 // Routes
-const userRoutes = require("./routes/userRoutes");
-const postRoutes = require("./routes/postRoutes");
+const userRouter = require("./routes/userRoutes");
+const postRouter = require("./routes/postRoutes");
+const viewRouter = require("./routes/viewRoutes");
 
 const app = express();
 
@@ -72,12 +71,9 @@ app.use(
 );
 
 // Mounting
-app.get('/', (req, res) => {
-    res.status(200).render('base');
-});
-
-app.use("/users", userRoutes);
-app.use("/posts", postRoutes);
+app.use("/", viewRouter)
+app.use("/users", userRouter);
+app.use("/posts", postRouter);
 
 // Error handling 
 app.all('*', (req, res, next) => {
