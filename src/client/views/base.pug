@@ -1,34 +1,18 @@
-
 html
     head
-        title myWIT Login
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        
+        title mywit | #{title}
+        
         link(rel='shortcut icon' type='image/ico' href='views/img/favicon.ico')
+        
+        script(http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' https://kit.fontawesome.com/5fb4a61f26.js 'unsafe-inline' 'unsafe-eval';** ")
+
+        link(rel='stylesheet' href='css/base.css')
+        link(rel='stylesheet' href='css/login.css')
+
     body
 
-        // comments
-        // h1= user.username
-        // write JS: - const value = 10;
-        // ES6 templet string: #{string}
-
-        div(class='login')
-            div(class='logo')
-                img.image(src ='views/img/mywit_logo.png' alt='mywit logo')
-
-            form(action='/users/login' method='post')
-                div(class='form')
-                    div(class='username')
-                        input(type='text' name='username' placeholder='Username or Email')
-
-                    div(class='password')
-                        input(type='password' name='password' placeholder='Password')
-
-                    div(class='options')
-                        div(class='remember me')
-                            input(id='remember me' type='checkbox')
-                            label(for='remember me') Remember me?
-
-                    div(class='forgetpassword')
-                        a(href='#') Forget password?
-
-
-                    button(type='submit') Login
+        // CONTENT
+        block content
