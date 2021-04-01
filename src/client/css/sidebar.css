@@ -1,0 +1,66 @@
+.div__sidenav{
+    position: fixed;
+    width: 60px;
+    height: 300px;
+    background: black;
+    transition: 0.5s;
+    overflow: hidden;
+    z-index: 9;
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+}
+
+.div__sidenav:hover,
+.div__sidenav.active{
+    width: 200px;
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .5);
+}
+
+.div__sidenav ul{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+}
+
+.div__sidenav ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.div__sidenav ul li:hover{
+    background: rgb(255, 102, 0);
+}
+
+.div__sidenav ul li a{
+    position: relative;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
+
+.div__sidenav ul li a .nav--icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.div__sidenav ul li a .nav--icon .fa{
+    font-size: 24px;
+    padding-top: 0.7em;
+}
+
+.div__sidenav ul li a .nav--name{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
