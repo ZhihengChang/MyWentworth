@@ -1,0 +1,20 @@
+.div__post-card 
+
+    .post-card-header
+        span.post-author= post.author
+
+    .post-card-body 
+        p.post-content= post.content
+
+    .post-card-footer
+
+        - const post_ts= post.post_ts;
+        - const year= post_ts.getFullYear();
+        - const month= post_ts.getMonth() + 1;
+        - const day= post_ts.getDate();
+        - const hr= (post_ts.getHours() > 12)? post_ts.getHours() - 12: post_ts.getHours();
+        - const min= (post_ts.getMinutes() < 10)? `0${post_ts.getMinutes()}`:post_ts.getMinutes();
+        - const ampm = (post_ts.getHours() >= 12)? 'PM': 'AM'
+
+        span.post-time #{month}/#{day}/#{year} #{hr}:#{min}  #{ampm}
+        span.post-likes= post.likes.length
