@@ -1,0 +1,11 @@
+extends base
+
+block content
+    include ./partials/_sidebar.pug
+
+    main.main
+        .post-container
+
+            each post in posts 
+                include ./partials/_post.pug
+
