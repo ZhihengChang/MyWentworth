@@ -5,7 +5,7 @@
  * descriptions: This controller is not for resource managment but for global error handling
  */
 
-const util = require('../../util/server_utilities');
+const util = require('../../util/server_util');
 const Logger = require('../../util/logger');
 const AppError = require('../../util/error/appError');
 const logger = new Logger();

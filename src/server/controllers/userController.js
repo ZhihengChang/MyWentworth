@@ -7,7 +7,7 @@
 
 //util
 const path = require('path');
-const util = require("../../util/server_utilities");
+const util = require("../../util/server_util");
 const Logger = require("../../util/Logger");
 const DBAPI = require("../../util/DBAPI");
 const AppError = require('../../util/error/appError');

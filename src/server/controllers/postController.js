@@ -7,7 +7,7 @@
 
 //util
 const path = require('path');
-const util = require("../../util/server_utilities");
+const util = require("../../util/server_util");
 const Logger = require("../../util/Logger");
 const logger = new Logger(path.basename(__filename));
 logger.details(true);
