@@ -1,23 +1,26 @@
+mixin menuOption(label, icon, api)
+    a(href=`${api}`)
+        span.nav--icon
+            i(class= `fa fa-${icon}` aria-hidden='true')
+        span.nav--name= label
+
 
 .div__sidenav
     ul
         li
-            a(herf='#')
-                span.nav--icon
-                    i.fa.fa-home(aria-hidden='true')
-                span.nav--name Home
-        li
-            a(herf='#')
-                span.nav--icon
-                    i.fa.fa-id-card-o(aria-hidden='true')
-                span.nav--name Profile
-        li
-            a(herf='#')
-                span.nav--icon
-                    i.fa.fa-google-wallet(aria-hidden='true')
-                span.nav--name Apps
-        li
-            a(herf='#')
-                span.nav--icon
-                    i.fa.fa-sign-out(aria-hidden='true')
-                span.nav--name Sign Out
+            +menuOption('Home', 'home', '/')
+        
+        if user 
+            li
+                +menuOption('Profile', 'user-circle', '/profile')
+            li
+                +menuOption('Apps', 'window-restore', '/apps')
+            li 
+                +menuOption('Sign out', 'sign-out', '#')
+        else 
+            li
+                +menuOption('About', 'info', 'https://wit.edu/')
+            li
+                +menuOption('Sign up', 'user-o', '#')
+            li  
+                +menuOption('Log in', 'sign-in', '/login')

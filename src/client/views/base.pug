@@ -2,12 +2,13 @@ html
     head
         meta(charset='UTF-8')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        //- meta(http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline'; img-src 'self' data:")
         
         title mywit | #{title}
         
         link(rel='shortcut icon' type='image/ico' href='views/img/favicon.ico')
         
-        //- script(http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' https://kit.fontawesome.com/5fb4a61f26.js 'unsafe-inline' 'unsafe-eval';** ")
+        //- script(http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.map 'unsafe-inline' 'unsafe-eval';** ")
         link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
         
         link(rel='stylesheet' href='css/base.css')
@@ -20,3 +21,8 @@ html
 
         // CONTENT
         block content
+
+        // SCRIPTS
+        script(src='js/base.js')
+        script(type='module' src='js/login.js')
+        //- script(src='js/bundle.js')

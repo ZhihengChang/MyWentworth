@@ -4,7 +4,7 @@
  * used by: *Routes.js
  * descriptions: This controller provides dynamic page rendering
  */
-const util = require('../../util/server_utilities');
+const util = require('../../util/server_util');
 const catchAsync = require('../../util/error/catchAsync');
 
 const Post = require('../models/postModel');
