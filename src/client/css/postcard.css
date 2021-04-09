@@ -1,32 +1,30 @@
-.div__post-card :before, .div__post-card :after {
+/* .div__post-card :before, .div__post-card :after {
     /* display:table; */
-    content:"";
-    zoom:1 /* ie fix */;
-}
+    /* content:"";
+    zoom:1; */
+/* }  */
 
-.div__post-card :after {
+/* .div__post-card :after {
     clear:both;
-}
+} */
 
 .div__post-card  {
     position: relative;
     width:60%;
-    height: 200px;
+    height: 230px;
     min-width: 500px;
-    margin: 15 auto;
-    margin-bottom: 24px;
-    border:1px solid #fff;
+    margin: 40 auto;
+    /* margin-bottom: 24px; */
+    /* border:1px solid #fff; */
     box-shadow:0px 2px 7px #292929;
     -moz-box-shadow: 0px 2px 7px #292929;
     -webkit-box-shadow: 0px 2px 7px #292929;
-    border-radius:10px;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
+    border-radius:20px;
     background-color:#ffffff;
 }
 
 .post-card-body {
-    height:70%;
+    height:67%;
     width:100%;
     padding: 20px;
     border: solid #eee;
@@ -34,14 +32,20 @@
 }
 
 .post-card-header{
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
     background-color: rgb(255, 245, 111);
 }
 
-.post-card-header, .post-card-footer {
+.post-card-header{
+    display: flex;
     height: 15%;
     padding: 5px;
+}
+
+.post-card-footer{
+    height: 18%;
+    /* padding: 10px; */
 }
 
 .post-card-header .post-author{
@@ -50,29 +54,47 @@
     color:rgb(0, 76, 255)
 }
 
-.post-card-footer .post-time{
-    padding-right: 120px;
+.post-card-header .post-time{
+    /* padding-right: 120px; */
+    width: 90%;
+    text-align: right;
+    color:rgb(170, 170, 170);
 }
 
-.like_button{
-    padding: 5px 20px;
-    background:blue;
+.post-icon-like{
+    display: inline;
+    width: 40%;
+    height: 100%;
+    /* float: right; */
+    /* margin-left: 20px; */
+    /* padding: 5px 20px; */
+    line-height: 1em;
     font-size: 12px;
     font-family: "Open Sans", sans-serif;
-    border-radius: 5px;
-    color: #e8efff;
-    outline: none;
-    border: none;
     cursor: pointer;
-  }
+    text-align: center;
+}
+
+.post-icon-like svg{
+    display: inline;
+    width: 30px;
+    height: 30px;
+    color: black;
+}
+
+.svg-icon path{
+    fill: rgb(85, 85, 85);
+}
+
+.post-like-count{
+    display: inline;
+    margin: 10;
+}
+
   
 .post-card-footer {
     text-align: right;
     background-color: whiteSmoke; 
-    -webkit-border-bottom-right-radius:5px;
-    -webkit-border-bottom-left-radius:5px;
-    -moz-border-radius-bottomright:5px;
-    -moz-border-radius-bottomleft:5px;
-    border-bottom-right-radius:5px;
-    border-bottom-left-radius:5px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;
 }
