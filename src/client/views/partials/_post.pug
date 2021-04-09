@@ -17,4 +17,7 @@
         - const ampm = (post_ts.getHours() >= 12)? 'PM': 'AM'
 
         span.post-time #{month}/#{day}/#{year} #{hr}:#{min}  #{ampm}
-        span.post-likes= post.likes.length
+        button(class="like_button")
+            span#icon 
+                i.fa.fa-thumbs-o-up(aria-hidden='true')
+            span#count 0 Like

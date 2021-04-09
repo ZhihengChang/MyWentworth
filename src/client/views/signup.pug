@@ -1,0 +1,30 @@
+extends base
+
+block content
+    .div-signup
+        .div-logo
+            img(src ='views/img/mywit_logo.png' alt='mywit logo')
+
+        
+        form(action='/users/signup' method='post')
+            .div__form--signup
+                .div__firstname
+                    input(type="text" name='firstname' placeholder='First Name')
+
+                .div__middlename 
+                    input(type="text" name='middlename' placeholder='Middle Name if you have one')
+
+                .div_lastname   
+                    input(type="text" name='lastname' placeholder='Last Name')
+
+                .div__username
+                    input(type='text' name='username' placeholder='Username or Email')
+
+                .div__password
+                    input(type='password' name='password' placeholder='Password')
+
+                .div__confirmpassword 
+                    input(type="password" name='confirmpassword' placeholder='Please Comfirm your password')
+
+                .div__submit
+                    button(type='submit') Signup

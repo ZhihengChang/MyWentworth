@@ -54,10 +54,18 @@
     padding-right: 120px;
 }
 
-.post-card-footer .post-likes{
-    padding-right: 10px
-}
-
+.like_button{
+    padding: 5px 20px;
+    background:blue;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 5px;
+    color: #e8efff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  
 .post-card-footer {
     text-align: right;
     background-color: whiteSmoke; 
