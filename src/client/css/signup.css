@@ -1,0 +1,58 @@
+.div__signup{
+    margin: 200px auto;
+    width: 500px;
+    background-color: white;
+    padding: 60px;
+    border-radius: 1.5em;
+}
+
+.div__logo{
+    width: 350px;
+    height: 170px;
+    margin: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.div__logo img{ 
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.div__form--signup{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.div__form--signup input{
+    font-size: 18px;
+    padding: 10px 20px 10px 5px;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.div__firstname,.div__middlename,.div_lastname,.div__username,.div__password,.div__confirmpassword{
+    display: block;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.div__form--signup .div__submit{
+    width: 100%;
+    text-align: center;
+}
+
+.div__form--signup button{
+    width: 65%;
+    padding: 12px 10px;
+    border: none;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: orange;
+    color: #fff;
+    transition: .5s;
+}
