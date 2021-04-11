@@ -7,11 +7,11 @@ let clicked = false;
 likeBtn.addEventListener("click", () => {
   if (!clicked) {
     clicked = true;
-    likeIcon.innerHTML = `<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>`;
+    likeIcon.innerHTML = `<i class="fa fa-heart"></i>`;
     count.textContent++;
   } else {
     clicked = false;
-    likeIcon.innerHTML = `<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>`;
+    likeIcon.innerHTML = `<i class="fa fa-heart"></i>`;
     count.textContent--;
   }
 });

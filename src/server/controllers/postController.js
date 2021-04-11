@@ -27,6 +27,10 @@ const Post = require('../models/postModel');
 
 //Controller Functions
 
+exports.viewCreateScreen = function(req, res){
+    res.render('create-post')
+}
+
 /**
  * Get all posts in posts collections
  */

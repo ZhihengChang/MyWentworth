@@ -4,8 +4,10 @@ const authController = require("../controllers/authController");
 
 const router = express.Router();
 
-router.route('/create-post',postController)
+router.route('/')
     .get(postController.getAllPosts)
     .post(authController.protect, postController.createPost);
+
+router.get('/create-post',postController.viewCreateScreen)
 
 module.exports = router;

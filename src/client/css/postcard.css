@@ -98,3 +98,42 @@
     border-bottom-right-radius:20px;
     border-bottom-left-radius:20px;
 }
+
+.post-card-footer button{
+    width: auto;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    padding: 1px;
+    text-align: center;
+    color: black;
+    transition: all ease 0.5s;
+    font-size: 15px;
+}
+
+.post-like-count span {
+    margin-left: 0.5rem;
+}
+
+.post-like-count .fas,
+.post-like-count{
+    transition: all ease 0.5s;
+}
+.post-like-count:focus {
+    background-color: transparent;
+  }
+  
+  .post-like-count:focus .fas,
+  .post-like-count:focus span {
+    color: #8a8a8a;
+  }
+  
+  .post-like-count:hover {
+    border-color: #cc4b37;
+    background-color: transparent;
+  }
+  
+  .post-like-count:hover .fas,
+  .post-like-count:hover span {
+    color: #cc4b37;
+  }
