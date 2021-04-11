@@ -41,6 +41,27 @@ exports.getUser = catchAsync( async function (req, res, next) {
     });
 });
 
+/**
+ * RES.LOCALS
+ * Get student object by wit_id and store
+ */
+exports.getStudent = catchAsync( async function (req, res, next) {
+    let wit_id = res.locals.user.wit_id;
+
+    const student = await Student.findOne({ wit_id });
+    if(!student){
+        return next(
+            new AppError(
+                `No student found with WIT ID ${wit_id}`, 
+                404
+            )
+        );
+    }
+   
+    res.locals.student = student;
+    next();
+});
+
 
 /**
  * Get all users in user collections

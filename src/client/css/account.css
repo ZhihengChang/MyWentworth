@@ -1,0 +1,117 @@
+.account{
+    /* background-color: #f7f7f7; */
+    background-color: orange;
+    /* padding: 2rem 6rem; */
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+    
+}
+
+.user-view {
+    background-color: #fff;
+    max-width: 120rem;
+    margin: 0 auto;
+    min-height: 100vh;
+    border-radius: 3px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    box-shadow: -5px 0 5px -5px #333;
+}
+
+.user-view__menu {
+    -webkit-box-flex: 20rem;
+    -ms-flex: 20rem 0 0px;
+    flex: 20rem 0 0;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right bottom,
+        from(orange),
+        to(rgb(255, 136, 0))
+    );
+    background-image: linear-gradient(to right bottom, orange, rgb(255, 136, 0));
+    padding: 4rem 0;
+}
+
+.user-view__content {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 7rem 0;
+}
+
+.user-view__form-container {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 8rem;
+}
+
+.side-nav {
+    list-style: none;
+}
+
+.side-nav li {
+    margin: 1rem 0;
+    border-left: 0 solid #fff;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.side-nav--active a {
+    color: white;
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+}
+
+.side-nav a:link,
+.side-nav a:visited {
+    padding: 1rem 4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: black;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.side-nav--active,
+.side-nav li:hover {
+    color: white;
+    border-left: 5px solid #fff !important;
+}
+
+.side-nav a:hover,
+.side-nav a:active {
+    color: white;
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+}
+
+.side-nav img {
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-right: 2rem;
+    margin-left: 0;
+}
+
+.avatar{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 90% 10%;
+    border-radius: 50%;
+    margin-left: 5em;
+}
