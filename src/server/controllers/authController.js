@@ -105,6 +105,7 @@ exports.signup = catchAsync(async function (req, res, next) {
 
         wit_id: req.body.wit_id,
         username: req.body.username,
+        studentName: student.name,
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
@@ -141,7 +142,7 @@ exports.login = catchAsync(async function (req, res, next) {
  */
 exports.logout = catchAsync(async function(req, res, next){
     res.cookie('jwt', 'loggedout', {
-        expires: new Date(Date.now()),
+        expires: new Date(Date.now() + 10 * 1000),
         httpOnly: true,
     });
     util.sendResponse(res, 200, { status: 'success' });
@@ -155,7 +156,8 @@ exports.protect = catchAsync(async function (req, res, next) {
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(' ')[1];
-    } else if (req.cookies.jwt) {
+    } else if (req.cookies.jwt && req.cookies.jwt !== 'loggedout') {
+        console.log(`JWT: ${req.cookies.jwt}`);
         token = req.cookies.jwt;
     }
 
@@ -195,6 +197,7 @@ exports.protect = catchAsync(async function (req, res, next) {
 
     //access granted
     req.user = user;
+    res.locals.user = user;
 
     next();
 });
@@ -205,7 +208,7 @@ exports.protect = catchAsync(async function (req, res, next) {
 exports.isLoggedIn = catchAsync(async function (req, res, next) {
     //get token and check exist
     let token;
-    if (req.cookies.jwt) {
+    if (req.cookies.jwt && req.cookies.jwt !== 'loggedout') {
 
         //validate token
         const decoded = await promisify(jwt.verify)(
@@ -225,7 +228,7 @@ exports.isLoggedIn = catchAsync(async function (req, res, next) {
         };
 
         //there is a logged in user
-        res.locals.user = user
+        res.locals.user = user;
         // next();
     }
     next();

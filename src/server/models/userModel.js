@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema({
         minlength: [1, 'A username must have greater than or equal to 1 characters'],
     },
 
+    studentName: { type: String, },
+
     email: {
         type: String,
         required: [true, 'Please provide an email'],

@@ -34,3 +34,9 @@ exports.renderUserSignup = function(req, res){
         title: "User Signup" 
     });
 }
+
+exports.renderUserProfile = function(req, res){
+    util.renderPage(res, 200, 'account', {
+        title: "Me" 
+    });
+}

@@ -1,0 +1,58 @@
+.error{
+    position: relative;
+    background-color: white;
+    width: 70%;
+    min-width: 1150px;
+    height: 40%;
+    min-height: 400px;
+    margin: auto;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+
+.error__title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-top: 50px;
+    margin-bottom: 1rem;
+}
+
+.error__title img{
+    height: 70px;
+}
+
+.error__msg {
+    color: rgb(158, 158, 158);
+    font-size: 2.5rem;
+    font-weight: 700;
+    max-width: 50rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.error__action {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.error__action a {
+    text-decoration: none;
+}
+
+.error__action img {
+    height: 40px;
+}
+
+.error__action-name{
+    font-size: 25px;
+}

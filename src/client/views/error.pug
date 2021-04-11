@@ -1,0 +1,12 @@
+extends base
+
+block content
+    .error
+        .error__title
+            img.svg-icon(src='views/img/svgicon/cancel.svg' alt='error icon')
+            h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!   
+        .error__msg= msg
+        .error__action 
+            img.svg-icon(src='views/img/svgicon/home.svg' alt='home icon')
+            a(href='/') 
+                span.error__action-name Back to Home
