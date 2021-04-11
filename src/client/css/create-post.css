@@ -1,0 +1,44 @@
+.div_container{
+    font-family: 'Open Sans', sans-serif;
+    margin: 200px auto;
+    width: 500px;
+    background-color: white;
+    padding: 60px;
+    border-radius: 1.5em;
+  }
+  
+  .form-group p{
+    text-align: center;
+    margin-top: 0.5em;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+     font-size: 18px;
+     padding: 10px 20px 10px 5px;
+     border: none;
+     outline: none;
+     background: none;
+  }
+  
+  .form-control{
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  
+  .body-content {
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: #292929;
+  }
+  
+  button{
+      width: 55%;
+      padding: 12px 10px;
+      border: none;
+      font-size: 20px;
+      border-radius: 30px;
+      background-color: orange;
+      color: #fff;
+      transition: .5s;
+  }

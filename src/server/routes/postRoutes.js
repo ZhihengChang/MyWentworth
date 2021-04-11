@@ -8,4 +8,6 @@ router.route('/')
     .get(postController.getAllPosts)
     .post(authController.protect, postController.createPost);
 
+router.get('/create-post',postController.viewCreateScreen)
+
 module.exports = router;

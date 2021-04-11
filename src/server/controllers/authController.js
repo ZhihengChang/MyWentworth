@@ -27,6 +27,21 @@ const signToken = function (id) {
     });
 }
 
+// /**
+//  * Create post
+//  */
+
+// exports.mustBeLoggedIn = function(req, res, next){
+//     if(req.sesstion.User){
+//         next()
+//     } else {
+//         req.flash("errors","You must be logged in to perform that action!")
+//         req.sesstion.save(function(){
+//             res.redirect('/')
+//         })
+//     }
+// }
+
 /**
  * Create JWT token and send the token in response
  * @param {Response} res 

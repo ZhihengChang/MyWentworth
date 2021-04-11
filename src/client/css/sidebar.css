@@ -1,7 +1,7 @@
 .div__sidenav{
     position: fixed;
     width: 60px;
-    height: 300px;
+    height: 350px;
     background: black;
     transition: 0.5s;
     overflow: hidden;
