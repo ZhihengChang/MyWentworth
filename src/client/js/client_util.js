@@ -1,6 +1,31 @@
 'use strict'
 
 // USER ==============================================================================================
+
+async function signup(newUserInfo){
+    try{
+        let result = await post('/api/users/signup', newUserInfo);
+        
+        if(result.status == 'success'){
+            showAlert('success', 'Signed up successfully');
+            window.setTimeout(()=>{
+                location.assign('/');
+            }, 1000);
+
+        }else{
+            showAlert('error', result.message);
+        }
+        
+    }catch(err){
+        showAlert(err);
+    }
+}
+
+/**
+ * Login the user using given username and password
+ * @param {String} username 
+ * @param {String} password 
+ */
 async function login(username, password){
     try {
         let result = await post('/api/users/login', {
@@ -24,6 +49,27 @@ async function login(username, password){
     
 }
 
+/**
+ * logout the current user
+ */
+async function logout(){
+    try{
+        let result = await get('/api/users/logout');
+        if(result.status == 'success'){
+            location.reload();
+        }
+    }catch(err){
+        showAlert(err);
+    }
+}
+
+/**
+ * Show the given alert message in given type format
+ * sucess: green
+ * error: red 
+ * @param {String} type 
+ * @param {String} msg 
+ */
 function showAlert(type, msg){
     hideAlert();
     const markup = `<div class="alert alert--${type}">${msg}</div>`;
@@ -31,6 +77,9 @@ function showAlert(type, msg){
     window.setTimeout(hideAlert, 5000);
 }
 
+/**
+ * Hide alert message
+ */
 function hideAlert(){
     const alert = document.querySelector('.alert');
     if(alert){
@@ -39,6 +88,15 @@ function hideAlert(){
 }
 
 // COMMUNICATION ===================================================================================
+
+/**
+ * Send POST request to the given endpoint using fetch. 
+ * header is optional
+ * @param {String} endpoint 
+ * @param {Object} body 
+ * @param {Object} header 
+ * @returns 
+ */
 async function post(endpoint, body, header){
     
     let _header = {};
@@ -61,7 +119,18 @@ async function post(endpoint, body, header){
     return await res.json();
 }
 
+/**
+ * Send GET request to the given endpoint using fetch
+ * @param {String} endpoint 
+ * @returns 
+ */
+async function get(endpoint){
+    const res = await fetch(endpoint);
+    return await res.json();
+}
+
 // OTHER =============================================================================================
+
 /**
  * Set custom invalid message
  */

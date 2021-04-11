@@ -12,8 +12,8 @@ const Post = require('../models/postModel');
 
 exports.renderUserLogin = function(req, res){
     util.renderPage(res, 200, 'login', {
-        title: "user Login"
-    })
+        title: "User Login"
+    });
 }
 
 exports.renderUserHome = catchAsync( async function(req, res) {
@@ -26,5 +26,11 @@ exports.renderUserHome = catchAsync( async function(req, res) {
     util.renderPage(res, 200, 'home', {
         title: "Home",
         posts
-    })
+    });
 });
+
+exports.renderUserSignup = function(req, res){
+    util.renderPage(res, 200, 'signup', {
+        title: "User Signup" 
+    });
+}

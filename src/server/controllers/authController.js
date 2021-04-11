@@ -10,9 +10,11 @@ const crypto = require('crypto');
 const util = require('../../util/server_util');
 const AppError = require("../../util/error/appError");
 const jwt = require('jsonwebtoken');
-const User = require('./../models/userModel');
 const catchAsync = require('../../util/error/catchAsync');
 const sendEmail = require('../../util/email');
+
+const User = require('./../models/userModel');
+const Student = require('../models/studentModel');
 
 /**
  * Create a JWT token based on the given user id
@@ -59,6 +61,31 @@ const createTokenAndSend = function (res, statusCode, user) {
  * User signup, return the new user object with JWT token
  */
 exports.signup = catchAsync(async function (req, res, next) {
+    
+    const wit_id = req.body.wit_id;
+
+    // Validate wit id
+    const student = await Student.findOne({ wit_id });
+    if(!student){
+        return next(
+            new AppError(
+                'No WIT ID found, contact Tech Spot for help',
+                404
+            )
+        );
+    }
+
+    // Validate user already exist
+    const user = await User.findOne({ wit_id });
+    if(user){
+        return next(
+            new AppError(
+                'User with this WIT ID already exist, try log in',
+                409
+            )
+        );
+    }
+
     const newUser = await User.create({
 
         wit_id: req.body.wit_id,
@@ -92,6 +119,17 @@ exports.login = catchAsync(async function (req, res, next) {
 
     // send token
     createTokenAndSend(res, 200, user);
+});
+
+/**
+ * User logout
+ */
+exports.logout = catchAsync(async function(req, res, next){
+    res.cookie('jwt', 'loggedout', {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+    });
+    util.sendResponse(res, 200, { status: 'success' });
 });
 
 /**
