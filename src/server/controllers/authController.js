@@ -90,6 +90,7 @@ exports.signup = catchAsync(async function (req, res, next) {
 
         wit_id: req.body.wit_id,
         username: req.body.username,
+        studentName: student.name,
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
@@ -181,6 +182,7 @@ exports.protect = catchAsync(async function (req, res, next) {
 
     //access granted
     req.user = user;
+    res.locals.user = user;
 
     next();
 });
@@ -211,7 +213,7 @@ exports.isLoggedIn = catchAsync(async function (req, res, next) {
         };
 
         //there is a logged in user
-        res.locals.user = user
+        res.locals.user = user;
         // next();
     }
     next();
