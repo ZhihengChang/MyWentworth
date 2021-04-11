@@ -4,7 +4,7 @@ const authController = require("../controllers/authController");
 
 const router = express.Router();
 
-router.route('/')
+router.route('/create-post',postController)
     .get(postController.getAllPosts)
     .post(authController.protect, postController.createPost);
 

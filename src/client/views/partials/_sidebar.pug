@@ -10,13 +10,16 @@ mixin menuOption(label, icon, api)
         li
             +menuOption('Home', 'home', '/')
         
-        if user 
+        if user
+            li 
+                +menuOption('Create New Post', 'plus','/create-post')
             li
                 +menuOption('Profile', 'user-circle', '/profile')
             li
                 +menuOption('Apps', 'window-restore', '/apps')
             li 
                 +menuOption('Sign out', 'sign-out', '#')
+
         else 
             li
                 +menuOption('About', 'info', 'https://wit.edu/')
