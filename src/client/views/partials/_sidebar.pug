@@ -1,5 +1,5 @@
 mixin menuOption(label, icon, api)
-    a(href=`${api}`)
+    a(class=`${label.split(' ').join('')}`, href=`${api}`)
         span.nav--icon
             i(class= `fa fa-${icon}` aria-hidden='true')
         span.nav--name= label
@@ -21,6 +21,6 @@ mixin menuOption(label, icon, api)
             li
                 +menuOption('About', 'info', 'https://wit.edu/')
             li
-                +menuOption('Sign up', 'user-o', '#')
+                +menuOption('Sign up', 'user-o', '/signup')
             li  
                 +menuOption('Log in', 'sign-in', '/login')

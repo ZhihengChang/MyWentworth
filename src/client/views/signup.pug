@@ -1,30 +1,37 @@
 extends base
 
 block content
-    .div-signup
-        .div-logo
+    .div__signup
+        .div__logo
             img(src ='views/img/mywit_logo.png' alt='mywit logo')
-
         
-        form(action='/users/signup' method='post')
+        form.form--signup
             .div__form--signup
-                .div__firstname
-                    input(type="text" name='firstname' placeholder='First Name')
-
-                .div__middlename 
-                    input(type="text" name='middlename' placeholder='Middle Name if you have one')
-
-                .div_lastname   
-                    input(type="text" name='lastname' placeholder='Last Name')
+                .div__witid
+                    img.svg-icon(src='views/img/svgicon/identification.svg' alt='witid icon')
+                    input#wit(type='text' name='wit_id' placeholder='WIT ID', required)
 
                 .div__username
-                    input(type='text' name='username' placeholder='Username or Email')
+                    img.svg-icon(src='views/img/svgicon/user.svg' alt='username icon')
+                    input#usn(type='text' name='username' placeholder='Username', required)
+
+                .div__email
+                    img.svg-icon(src='views/img/svgicon/email.svg' alt='username icon')
+                    input#eml(type='text' name='username' placeholder='Email', required)
 
                 .div__password
-                    input(type='password' name='password' placeholder='Password')
+                    img.svg-icon(src='views/img/svgicon/padlock.svg' alt='username icon')
+                    input#pwd(type='password' name='password' placeholder='Password', required)
 
-                .div__confirmpassword 
-                    input(type="password" name='confirmpassword' placeholder='Please Comfirm your password')
+                .div__passwordConfirm
+                    img.svg-icon(src='views/img/svgicon/check-mark.svg' alt='username icon')
+                    input#cfm(type="password" name='passwordConfirm' placeholder='Comfirm your password', required)
+                
+                .div__actions
+                    .div__actions--login
+                        a(href='/login') Have an account? 
+                    .div__actions--notstudent
+                        a(href='https://wit.edu/about/contact-us') Not a WIT student?
 
                 .div__submit
                     button(type='submit') Signup
