@@ -8,6 +8,7 @@ router.route('/')
     .get(postController.getAllPosts)
     .post(authController.protect, postController.createPost);
 
-router.get('/create-post',postController.viewCreateScreen)
+router.route('/like')
+    .post(authController.protect, postController.likePost);
 
 module.exports = router;

@@ -22,8 +22,8 @@ const postSchema = new mongoose.Schema({
 
     attachment:     { type: Array, default: [String] },
     post_ts:        { type: Date, default: Date.now() },
-    likes:          [Like],
-    comments:       [Number],
+    likes:          { type: Array, default: [String] }, //user_id
+    comments:       { type: Array, default: [String] }, //comments_id
 });
 
 // postSchema.pre('find', function(next){

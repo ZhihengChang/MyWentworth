@@ -63,6 +63,7 @@ const userSchema = new mongoose.Schema({
     notifications:      { type: Array, default: [String] },
     friends:            { type: Array, default: [String] },
     posts:              { type: Array, default: [String] },
+    likes:              { type: Array, default: [String] }, // post_id
     chats:              { type: Array, default: [String] },
     login_ts:           { type: Date, default: new Date(0) },
     logout_ts:          { type: Date, default: new Date(0) },

@@ -3,7 +3,9 @@ extends base
 block content
     include ./partials/_sidebar.pug
 
-    
+    - const data = JSON.stringify(user)
+    input#data(type='hidden', value=data)
+
     main.main
         .post-container
 

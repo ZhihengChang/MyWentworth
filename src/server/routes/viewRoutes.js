@@ -9,6 +9,7 @@ router.use(authController.isLoggedIn);
 router.get('/signup', authController.isLoggedIn, viewController.renderUserSignup);
 router.get('/login', authController.isLoggedIn, viewController.renderUserLogin);
 router.get('/', authController.isLoggedIn, viewController.renderUserHome);
+router.get('/newPost', authController.protect, viewController.renderNewPost);
 
 router.get('/me', 
     authController.protect, 

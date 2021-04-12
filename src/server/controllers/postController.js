@@ -18,6 +18,8 @@ const DBAPI = require("../../util/DBAPI");
 const Student = require('../models/studentModel');
 const User = require('../models/userModel');
 const Post = require('../models/postModel');
+const catchAsync = require('../../util/error/catchAsync');
+const AppError = require('../../util/error/appError');
 
 
 //Middlewares
@@ -26,10 +28,6 @@ const Post = require('../models/postModel');
 
 
 //Controller Functions
-
-exports.viewCreateScreen = function(req, res){
-    res.render('create-post')
-}
 
 /**
  * Get all posts in posts collections
@@ -61,6 +59,48 @@ exports.createPost = catchAsync(async function (req, res, next) {
     util.sendResponse(res, 200, {
         status: 'success',
         data: { post: newPost }
+    });
+});
+
+/**
+ * Like or Dislike a post
+ */
+exports.likePost = catchAsync(async function (req, res, next) {
+    console.log(req.body.post_id, req.body.user_id);
+
+    let message = 'liked';
+    const post_id = req.body.post_id;
+    const user_id = req.body.user_id;
+
+    // Validate the post still exist
+    const user = await User.findById(user_id);
+    const post = await Post.findById(post_id);
+    if(!post){
+        return next(
+            new AppError(
+                'Post has been deleted',
+                404
+            )
+        );
+    }
+
+    if(
+        util.findAndRemove(post.likes, user_id) &&
+        util.findAndRemove(user.likes, post_id)
+    ){
+        message = 'disliked';
+    }else{
+        // Add user_id and post_id to post and user
+        post.likes.push(user_id);
+        user.likes.push(post_id);  
+    }
+
+    await post.save();
+    await user.save({ validateBeforeSave: false });
+
+    util.sendResponse(res, 200, {
+        status: 'success',
+        message,
     });
 });
 

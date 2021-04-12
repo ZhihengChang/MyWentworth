@@ -100,6 +100,7 @@
 }
 
 .post-card-footer button{
+    outline: none;
     width: auto;
     border: none;
     background-color: transparent;
@@ -117,6 +118,7 @@
 
 .post-like-count .fas,
 .post-like-count{
+    outline: none;
     transition: all ease 0.5s;
 }
 .post-like-count:focus {

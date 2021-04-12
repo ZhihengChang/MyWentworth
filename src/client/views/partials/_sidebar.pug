@@ -12,7 +12,7 @@ mixin menuOption(label, icon, api)
         
         if user
             li 
-                +menuOption('Create New Post', 'plus','/create-post')
+                +menuOption('New post', 'plus', '/newPost')
             li
                 +menuOption('Profile', 'user-circle', '/me')
             li
@@ -23,6 +23,8 @@ mixin menuOption(label, icon, api)
         else 
             li
                 +menuOption('About', 'info', 'https://wit.edu/')
+            li
+                +menuOption('Contact', 'envelope', 'https://wit.edu/about/contact-us')
             li
                 +menuOption('Sign up', 'user-o', '/signup')
             li  

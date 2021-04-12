@@ -8,6 +8,7 @@ module.exports = {
     sendResponse,
     filterObject,
     renderPage,
+    findAndRemove,
 }
 
 /**
@@ -46,4 +47,16 @@ function filterObject(obj, ...allowedFields) {
  */
 function renderPage(res, statusCode, page, data){
     res.status(statusCode).render(page, data);
+}
+
+/**
+ * Remove the target from the given array
+ * if removed, return true, otherwise return false
+ * @param {Array} arr 
+ * @param {String | Number} target 
+ * @returns boolean
+ */
+function findAndRemove(arr, target){
+    let index = arr.indexOf(target);
+    return arr.splice(index, 1).length;
 }
