@@ -10,7 +10,7 @@ async function signup(newUserInfo){
             showAlert('success', 'Signed up successfully');
             window.setTimeout(()=>{
                 location.assign('/');
-            }, 1000);
+            }, 500);
 
         }else{
             showAlert('error', result.message);
@@ -33,7 +33,7 @@ async function login(username, password){
             password
         });
 
-        if(result.status=='success'){
+        if(result.status == 'success'){
             showAlert('success', 'Logged in successfully!');
             window.setTimeout(()=>{
                 location.assign('/');
@@ -57,6 +57,32 @@ async function logout(){
         let result = await get('/api/users/logout');
         if(result.status == 'success'){
             location.reload();
+        }
+    }catch(err){
+        showAlert(err);
+    }
+}
+
+async function likePost(post_id, user_id, count){
+    console.log(post_id, user_id);
+    try{
+        let result = await post('/api/posts/like', {
+            post_id,
+            user_id,
+        });
+        console.log(result);
+        if(result.status == 'success'){
+
+            //change the like number based on message
+            if(result.message == 'liked'){
+                count.textContent = +count.textContent + 1;
+                count.classList.add('liked');
+            }
+            
+            if(result.message == 'disliked'){
+                count.textContent = +count.textContent - 1;
+                count.classList.remove('liked');
+            }
         }
     }catch(err){
         showAlert(err);

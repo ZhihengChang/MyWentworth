@@ -2,6 +2,10 @@
 const loginForm = document.querySelector('.form--login');
 const signupForm = document.querySelector('.form--signup');
 const logoutBtn = document.querySelector('.Signout');
+const likeBtns = document.querySelectorAll('.post-like-count');
+
+// DATA
+const data = document.querySelector('#data');
 
 // DELEGATION
 if(signupForm){
@@ -28,7 +32,29 @@ if(loginForm){
 }
 
 if(logoutBtn){
-    logoutBtn.addEventListener('click', logout)
+    logoutBtn.addEventListener('click', logout);
+}
+
+if(likeBtns){
+    for(const likeBtn of likeBtns){
+        likeBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            if(data.value) {
+                const user_id = JSON.parse(data.value)._id;
+                const footer = event.target.parentNode.parentNode;
+                // console.log(footer);
+    
+                if(footer.className == 'post-card-footer'){
+                    const post_id = footer.childNodes[0].value;
+                    const count = footer.childNodes[1].childNodes[2];
+                    console.log(count);
+                    likePost(post_id, user_id, count);
+                }
+            }else {
+                showAlert('error', 'You are not logged in, please try again after login');
+            }
+        });
+    }
 }
 
 //GLOBAL

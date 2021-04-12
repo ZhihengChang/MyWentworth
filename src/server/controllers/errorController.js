@@ -42,6 +42,7 @@ module.exports = (err, req, res, next) => {
 
 function sendErrorDev(err, req, res) {
     if(req.originalUrl.startsWith('/api')){
+        console.log(err);
         util.sendResponse(res, err.statusCode, {
             status: err.status,
             error: err,

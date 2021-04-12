@@ -35,6 +35,13 @@ exports.renderUserSignup = function(req, res){
     });
 }
 
+exports.renderNewPost = function(req, res){
+    util.renderPage(res, 200, 'newPost', {
+        title: "New Post"
+    });
+}
+
+
 exports.renderUserProfile = function(req, res){
     util.renderPage(res, 200, 'account', {
         title: "Me" 

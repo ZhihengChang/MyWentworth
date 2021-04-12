@@ -61,3 +61,7 @@ body{
   background-image: linear-gradient(to right, #ff7730, #eb4d4b);
   font-size: 3.5rem;
 }
+
+.liked{
+  color: red;
+}
