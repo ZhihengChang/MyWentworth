@@ -66,7 +66,6 @@ exports.createPost = catchAsync(async function (req, res, next) {
  * Like or Dislike a post
  */
 exports.likePost = catchAsync(async function (req, res, next) {
-    console.log(req.body.post_id, req.body.user_id);
 
     let message = 'liked';
     const post_id = req.body.post_id;
@@ -84,10 +83,9 @@ exports.likePost = catchAsync(async function (req, res, next) {
         );
     }
 
-    if(
-        util.findAndRemove(post.likes, user_id) &&
+    if(post.likes.indexOf(user_id) != -1 && user.likes.indexOf(post_id) != -1){
+        util.findAndRemove(post.likes, user_id)
         util.findAndRemove(user.likes, post_id)
-    ){
         message = 'disliked';
     }else{
         // Add user_id and post_id to post and user

@@ -64,15 +64,12 @@ async function logout(){
 }
 
 async function likePost(post_id, user_id, count){
-    console.log(post_id, user_id);
     try{
         let result = await post('/api/posts/like', {
             post_id,
             user_id,
         });
-        console.log(result);
         if(result.status == 'success'){
-
             //change the like number based on message
             if(result.message == 'liked'){
                 count.textContent = +count.textContent + 1;
