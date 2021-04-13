@@ -42,12 +42,10 @@ if(likeBtns){
             if(data.value) {
                 const user_id = JSON.parse(data.value)._id;
                 const footer = event.target.parentNode.parentNode;
-                // console.log(footer);
     
                 if(footer.className == 'post-card-footer'){
                     const post_id = footer.childNodes[0].value;
                     const count = footer.childNodes[1].childNodes[2];
-                    console.log(count);
                     likePost(post_id, user_id, count);
                 }
             }else {

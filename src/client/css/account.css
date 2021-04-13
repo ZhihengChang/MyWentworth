@@ -28,14 +28,7 @@
     -webkit-box-flex: 20rem;
     -ms-flex: 20rem 0 0px;
     flex: 20rem 0 0;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        right bottom,
-        from(orange),
-        to(rgb(255, 136, 0))
-    );
-    background-image: linear-gradient(to right bottom, orange, rgb(255, 136, 0));
+    background-color: orange;
     padding: 4rem 0;
 }
 
@@ -43,7 +36,7 @@
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    padding: 7rem 0;
+    padding: 5rem 0;
 }
 
 .user-view__form-container {
@@ -52,25 +45,24 @@
     padding: 0 8rem;
 }
 
-.side-nav {
+.account-side-nav {
     list-style: none;
 }
 
-.side-nav li {
+.account-side-nav li {
     margin: 1rem 0;
     border-left: 0 solid #fff;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
-.side-nav--active a {
-    color: white;
+.account-side-nav--active a {
     -webkit-transform: translateX(-3px);
     transform: translateX(-3px);
 }
 
-.side-nav a:link,
-.side-nav a:visited {
+.account-side-nav a:link,
+.account-side-nav a:visited {
     padding: 1rem 4rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -87,20 +79,18 @@
     transition: all 0.3s;
 }
 
-.side-nav--active,
-.side-nav li:hover {
-    color: white;
+.account-side-nav--active,
+.account-side-nav li:hover {
     border-left: 5px solid #fff !important;
 }
 
-.side-nav a:hover,
-.side-nav a:active {
-    color: white;
+.account-side-nav a:hover,
+.account-side-nav a:active {
     -webkit-transform: translateX(3px);
     transform: translateX(3px);
 }
 
-.side-nav img {
+.account-side-nav img {
     height: 1.4rem;
     width: 1.4rem;
     margin-right: 2rem;
@@ -113,5 +103,47 @@
     object-fit: cover;
     object-position: 90% 10%;
     border-radius: 50%;
-    margin-left: 5em;
+    margin-left: 3em;
+}
+
+
+.info-container-header{
+    display: flex;                  /* establish flex container */
+    flex-direction: row;            /* default value; can be omitted */
+    flex-wrap: nowrap;              /* default value; can be omitted */
+    justify-content: flex-start; /* switched from default (flex-start, see below) */
+}
+
+.info-container-header > div {
+    height: 220px;
+    /* border: 2px dashed red; */
+    /* border-bottom: #333; */
+}
+
+.info-container-header-left {
+    width: 275px;
+}
+
+.info-container-header-center {
+    width: 600px;
+    text-align: start;
+    padding: 1.5em;
+}
+
+.info-container-header-center #student-witid{
+    margin-top: 10px;
+    color: rgb(185, 185, 185);
+}
+
+.info-container-header-right {
+    width: 100%;
+    text-align: end;
+    padding: 1.5em;
+    padding-right: 5em;
+}
+
+.info-container-header-right #student-year{
+    margin-top: 10px;
+    margin-right: 15px;
+    color: rgb(185, 185, 185);
 }

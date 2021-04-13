@@ -2,7 +2,7 @@ extends base
 
 mixin profileMenuOption(label, icon, link, active)
     li(class=`${active ? 'side-nav--active':''}`)
-        a(class=`${active ? 'side-nav--active-a':''}` href=`${link}`)
+        a(class=`${active ? 'account-side-nav--active':''}` href=`${link}`)
             img.svg-icon(src=`views/img/svgicon/${icon}.svg`)
             | #{label}
 
@@ -11,7 +11,7 @@ block content
     .account 
         .user-view 
             nav.user-view__menu 
-                ul.side-nav
+                ul.account-side-nav
                     +profileMenuOption('Back', 'back-arrow', '/', false)
                     +profileMenuOption('Information', 'info', '#', true)
                     +profileMenuOption('Schedule', 'calendar', '#', false)
@@ -23,13 +23,13 @@ block content
                 .user-view__info-container
                     .info-container-header 
                         .info-container-header-left
-                            img.avatar(src=`${user.avatar}`)
+                            img.avatar(src=`${user.avatar || 'data/default/img/avatar.png'}`)
                         .info-container-header-center
-                            p.info-student-name= user.studentName
-                            p.info-witid= user.wit_id 
+                            p#student-name.heading-third.heading-third--wit= user.studentName
+                            p#student-witid.heading-fourth= user.wit_id 
                         .info-container-header-right 
-                            p.info-student-dpt= student.graduation.department
-                            p.info-student-year= `${student.graduation.exp_year.split('-')[0]}`
+                            p#student-dpt.heading-third.heading-third--dpt= student.graduation.department
+                            p#student-year.heading-fourth= `${student.graduation.exp_year.split('-')[0]}`
 
 
 
