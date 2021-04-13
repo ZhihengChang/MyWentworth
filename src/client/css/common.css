@@ -50,6 +50,26 @@ body{
   display: inline-block;
 }
 
+.heading-third {
+  font-size: 2rem;
+  font-weight: 250;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1rem;
+  line-height: 1.3;
+  /* display: inline-block; */
+}
+
+.heading-fourth {
+  font-size: 1.2rem;
+  font-weight: 100;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1rem;
+  line-height: 1.3;
+  /* display: inline-block; */
+}
+
 .heading-secondary--error {
   background-image: -webkit-gradient(
     linear,
@@ -60,6 +80,30 @@ body{
   );
   background-image: linear-gradient(to right, #ff7730, #eb4d4b);
   font-size: 3.5rem;
+}
+
+.heading-third--wit {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(orange),
+    to(rgb(255, 102, 0))
+  );
+  background-image: linear-gradient(to right, orange, rgb(255, 102, 0));
+  font-size: 2rem;
+}
+
+.heading-third--dpt {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgb(0, 162, 255)),
+    to(rgb(0, 68, 255))
+  );
+  background-image: linear-gradient(to right, rgb(0, 162, 255), rgb(0, 68, 255));
+  font-size: 2rem;
 }
 
 .liked{
