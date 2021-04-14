@@ -11,8 +11,8 @@ mixin menuOption(label, icon, api)
             +menuOption('Home', 'home', '/')
         
         if user
-            li 
-                +menuOption('New post', 'plus', '/newPost')
+            li#openmodal
+                +menuOption('New post', 'plus', '/')
             li
                 +menuOption('Profile', 'user-circle', '/me')
             li 

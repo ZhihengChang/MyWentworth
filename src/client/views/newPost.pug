@@ -2,14 +2,29 @@ extends base
 
 block content
     include ./partials/_sidebar.pug
-    .div_container 
-        form(action="#" method="POST")
-          .div_form-group
-           p
-            label(for="post-tilte") Title 
-            input(required name="title" id="post-title" class="form-control form-control-lg form-control-title" type="text" placeholder="" autocomplete="off")
-          .div_form-group
-           p
-            label(for="post-body") Body Content
-            textarea(equired name="body" id="post-body" class="body-content tall-textarea form-control" type="text") 
-          button.btn Save New Post
+    //- .modal#modal 
+    //-   .div_container#modal-content 
+    //-     form(action="#" method="POST")
+    //-       .div_form-group
+    //-        p
+    //-         label(for="post-tilte") Title 
+    //-         input(required name="title" id="post-title" class="form-control form-control-lg form-control-title" type="text" placeholder="" autocomplete="off")
+    //-       .div_form-group
+    //-        p
+    //-         label(for="post-body") Body Content
+    //-         textarea(required name="body" id="post-body" class="body-content tall-textarea form-control" type="text") 
+    //-       button.btn Save New Post
+    div#myModal.modal
+
+      //- <!-- Modal content -->
+      div.modal-content
+        span#close &times;
+          form(action = "#" method="POST")
+            .div_form-group 
+              p 
+                  label Title
+                    input
+              p
+                  label Body Content
+                    textarea
+              button.btn New Post
