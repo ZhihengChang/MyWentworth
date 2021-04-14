@@ -86,6 +86,10 @@ async function likePost(post_id, user_id, count){
     }
 }
 
+async function newPost(){
+    
+}
+
 /**
  * Show the given alert message in given type format
  * sucess: green
@@ -108,6 +112,23 @@ function hideAlert(){
     if(alert){
         alert.parentElement.removeChild(alert);
     }
+}
+
+/**
+ * Open the given web modal
+ * @param {HTMLElement} modal 
+ */
+function openModal(modal){
+    modal.style.display = 'block';
+}
+
+/**
+ * Close the given web modal
+ * @param {HTMLElement} modal 
+ */
+function closeModal(modal){
+    modal.style.display = 'none';
+    modal.querySelector('form').reset();
 }
 
 // COMMUNICATION ===================================================================================

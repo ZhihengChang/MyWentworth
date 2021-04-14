@@ -84,3 +84,49 @@
 .div__submit button:hover{
     background-color: rgb(255, 123, 0);
 }
+
+form textarea{
+    resize: none;
+}
+
+.div__post-content{
+    width: 100%;
+    height: 180px;
+    padding: 0 1px 0 1px;
+}
+
+.div__post-content textarea{
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid rgb(218, 218, 218);
+    border-top: 2px solid rgb(218, 218, 218);
+    padding: 10px;
+}
+
+.div__post-content textarea:focus {
+    outline: none !important;
+    border-top:5px solid orange;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2);
+}
+
+.div__post-attachment input[type="file"] {
+    display: none;
+}
+
+.form-file-upload{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 2px 6px;
+    padding-right: 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.form-file-upload img {
+    margin-bottom: 1px;
+}
+
+

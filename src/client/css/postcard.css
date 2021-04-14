@@ -1,21 +1,9 @@
-/* .div__post-card :before, .div__post-card :after {
-    /* display:table; */
-    /* content:"";
-    zoom:1; */
-/* }  */
-
-/* .div__post-card :after {
-    clear:both;
-} */
-
 .div__post-card  {
     position: relative;
     width:60%;
     height: 230px;
     min-width: 500px;
     margin: 40 auto;
-    /* margin-bottom: 24px; */
-    /* border:1px solid #fff; */
     box-shadow:0px 2px 7px #292929;
     -moz-box-shadow: 0px 2px 7px #292929;
     -webkit-box-shadow: 0px 2px 7px #292929;
@@ -34,7 +22,6 @@
 .post-card-header{
     border-top-left-radius:20px;
     border-top-right-radius:20px;
-    background-color: rgb(255, 245, 111);
 }
 
 .post-card-header{
@@ -123,19 +110,19 @@
 }
 .post-like-count:focus {
     background-color: transparent;
-  }
+}
   
-  .post-like-count:focus .fas,
-  .post-like-count:focus span {
+.post-like-count:focus .fas,
+.post-like-count:focus span {
     color: #8a8a8a;
-  }
+}
   
-  .post-like-count:hover {
+.post-like-count:hover {
     border-color: #cc4b37;
     background-color: transparent;
-  }
+}
   
-  .post-like-count:hover .fas,
-  .post-like-count:hover span {
+.post-like-count:hover .fas,
+.post-like-count:hover span {
     color: #cc4b37;
-  }
+}
