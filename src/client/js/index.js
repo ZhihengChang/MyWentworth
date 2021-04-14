@@ -4,6 +4,14 @@ const signupForm = document.querySelector('.form--signup');
 const logoutBtn = document.querySelector('.Signout');
 const likeBtns = document.querySelectorAll('.post-like-count');
 
+// WEB MODAL
+// Open btn
+const newPostBtn = document.querySelector('.Newpost');
+// Modal
+const createPostModal = document.querySelector('#postModal')
+// Close btn
+const modalCloseBtn = document.querySelector('.modal-close') ;
+
 // DATA
 const data = document.querySelector('#data');
 
@@ -35,6 +43,27 @@ if(logoutBtn){
     logoutBtn.addEventListener('click', logout);
 }
 
+if(newPostBtn){
+    if(createPostModal){
+        newPostBtn.addEventListener('click', () => {
+            openModal(createPostModal);
+        });
+        createPostModal.querySelector('.modal-close').addEventListener('click',
+            () => {
+                closeModal(createPostModal);
+            }
+        )
+        createPostModal.querySelector('.form--create-post').addEventListener('submit',
+            (event) => {
+                event.preventDefault();
+                const user_id = JSON.parse(data.value)._id;
+                newPost();
+            }
+        )
+    }
+    
+}
+
 if(likeBtns){
     for(const likeBtn of likeBtns){
         likeBtn.addEventListener('click', (event) => {
@@ -59,6 +88,10 @@ if(likeBtns){
 document.addEventListener("DOMContentLoaded", function () {
     setInputValidity();
 });
+
+window.addEventListener('click', (event) => {
+    if(event.target == createPostModal) closeModal(createPostModal);
+})
 
 
 
