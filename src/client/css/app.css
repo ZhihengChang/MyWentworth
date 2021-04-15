@@ -1,0 +1,38 @@
+.div__apps {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    margin-top: 40px;
+    padding: 3em;
+}
+
+.app--block {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 16px;
+    padding: 10px;
+    text-align: center;
+}
+
+.app--block img{
+    height: 70%;
+    width: 70%;
+    margin: 0;
+    margin-top: 11px;
+    margin-left: 2px;
+}
+
+.app--wrapper,
+.app--wrapper:hover{
+    color: transparent;
+}
+
+.app--block:hover{
+    transform: scale(1.1);
+    transition: transform .2s ease;
+}

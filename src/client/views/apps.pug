@@ -1,0 +1,23 @@
+
+
+
+extends base
+
+block content
+
+    mixin appBlock(app, icon, link)
+            a.app--wrapper(href=`${link}`)
+                .app--block
+                    img.svg-icon(src=`views/img/svgicon/${icon}.svg` alt=`${icon} icon`)
+
+    
+    include ./partials/_sidebar.pug
+
+    .div__apps 
+        +appBlock('Blackboard', 'blackboard', 'https://wit.blackboard.com/webapps')
+        +appBlock('Brightspace', 'brightness', 'https://wentworth.brightspace.com/')
+        +appBlock('CoVerified', 'safety-suit', 'https://web.coverified.us/')
+        +appBlock('Leopard Web', 'leopard', 'https://leopardweb.wit.edu/')
+        +appBlock('Library', 'books', 'https://library.wit.edu/home')
+        +appBlock('Email', 'outlook', 'https://outlook.office.com/mail/inbox')
+
