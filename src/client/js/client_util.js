@@ -86,8 +86,25 @@ async function likePost(post_id, user_id, count){
     }
 }
 
-async function newPost(){
-    
+/**
+ * Create a new post
+ * @param {Object} post 
+ */
+async function newPost(_post){
+    // console.log(post);
+    try{
+        let result = await post('/api/posts/create', _post);
+        if(result.status == 'success'){
+            showAlert('success', 'Post successfully!');
+            location.reload();
+        }else{
+            console.log(result);
+            showAlert('error', result.message);
+        }
+    }catch(err){
+        console.log(err);
+        showAlert(err);
+    }
 }
 
 /**

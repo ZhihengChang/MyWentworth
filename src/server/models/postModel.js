@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema({
     },
 
     attachment:     { type: Array, default: [String] },
-    post_ts:        { type: Date, default: Date.now() },
+    post_ts:        { type: Date, default: new Date },
     likes:          { type: Array, default: [String] }, //user_id
     comments:       { type: Array, default: [String] }, //comments_id
 });

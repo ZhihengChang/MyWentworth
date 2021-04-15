@@ -5,10 +5,12 @@ const authController = require("../controllers/authController");
 const router = express.Router();
 
 router.route('/')
-    .get(postController.getAllPosts)
-    .post(authController.protect, postController.createPost);
+    .get(postController.getAllPosts);
 
 router.route('/like')
     .post(authController.protect, postController.likePost);
+
+router.route('/create')
+    .post(authController.protect, postController.createPost);
 
 module.exports = router;
