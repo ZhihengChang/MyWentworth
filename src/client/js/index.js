@@ -6,7 +6,7 @@ const likeBtns = document.querySelectorAll('.post-like-count');
 
 // WEB MODAL
 // Open btn
-const newPostBtn = document.querySelector('.Newpost');
+const newPostBtn = document.querySelector('.Moment');
 // Modal
 const createPostModal = document.querySelector('#postModal')
 // Close btn
@@ -56,8 +56,14 @@ if(newPostBtn){
         createPostModal.querySelector('.form--create-post').addEventListener('submit',
             (event) => {
                 event.preventDefault();
-                const user_id = JSON.parse(data.value)._id;
-                newPost();
+                const author = JSON.parse(data.value).username;
+                const content = createPostModal.querySelector('#post-content').value;
+                newPost({ 
+                    author, 
+                    content,
+                    post_ts: new Date(),
+                });
+                closeModal(createPostModal);
             }
         )
     }

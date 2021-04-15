@@ -44,7 +44,7 @@ const posts = JSON.parse(
 //Insert all data to DB
 const importData = async function(){
     try{
-        await User.create(users);
+        // await User.create(users);
         await Post.create(posts);
         logger.log('Data successfully loaded').info();
     }catch(err){
@@ -56,7 +56,7 @@ const importData = async function(){
 //Delete all data from DB
 const deleteData = async function(){
     try{
-        await User.deleteMany();
+        // await User.deleteMany();
         await Post.deleteMany();
         logger.log('Data successfully deleted').info();
         process.exit();

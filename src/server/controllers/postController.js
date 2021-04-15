@@ -55,7 +55,23 @@ exports.getAllPosts = catchAsync(async function (req, res, next) {
 exports.createPost = catchAsync(async function (req, res, next) {
     logger.log("create post author " + req.body.author).msg();
     
+    const user = await User.findOne({ username: req.body.author });
+    if(!user){
+        return next(
+            new AppError(
+                'User no longer exist!',
+                404
+            )
+        );
+    }
+
+    // Create post
     const newPost = await Post.create(req.body);
+
+    // Add to user
+    user.posts.push(newPost._id);
+    user.save({ validateBeforeSave: false });
+    
     util.sendResponse(res, 200, {
         status: 'success',
         data: { post: newPost }
