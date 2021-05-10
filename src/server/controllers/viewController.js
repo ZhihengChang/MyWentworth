@@ -35,9 +35,9 @@ exports.renderUserSignup = function(req, res){
     });
 }
 
-exports.renderNewPost = function(req, res){
-    util.renderPage(res, 200, 'newPost', {
-        title: "New Post"
+exports.renderApps = function(req, res){
+    util.renderPage(res, 200, 'apps', {
+        title: "My Apps"
     });
 }
 
